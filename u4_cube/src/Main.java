@@ -82,15 +82,19 @@ public class Main extends Application {
 
         scene.setOnKeyPressed(event -> {
             KeyCode key = event.getCode();
-            if (key == KeyCode.A) {
-                dx = -userCubeSpeed;
-            } else if (key == KeyCode.D) {
-                dx = userCubeSpeed;
-            } else if (key == KeyCode.ESCAPE) {
-                if (isPaused) {
-                    isPaused = false;
-                } else if (!isPaused) {
-                    isPaused = true;
+            switch (key){
+                case KeyCode.A -> {
+                    dx = -userCubeSpeed;
+                }
+                case KeyCode.D -> {
+                    dx = userCubeSpeed;
+                }
+                case KeyCode.ESCAPE -> {
+                    if (isPaused) {
+                        isPaused = false;
+                    } else if (!isPaused) {
+                        isPaused = true;
+                    }
                 }
             }
         });
@@ -105,6 +109,8 @@ public class Main extends Application {
         win.setScene(scene);
         win.setTitle("Cube");
         win.setResizable(false);
+        win.setAlwaysOnTop(true);
+        win.centerOnScreen();
         win.show();
         new AnimationTimer() {
             public void handle(long now) {
